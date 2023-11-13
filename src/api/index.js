@@ -1,8 +1,8 @@
 import axios from "axios";
 // import { saveAs } from 'file-saver';
 
-const API = axios.create({ baseURL: "http://localhost:4000" });
-// const API = axios.create({baseURL:'https://wazodeal.herokuapp.com'})
+// const API = axios.create({ baseURL: "http://localhost:4000" });
+const API = axios.create({baseURL:'https://mini-server-mlxr.onrender.com'})
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
