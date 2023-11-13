@@ -11,7 +11,7 @@ export const usersignin = (ref) => async (dispatch) => {
 
         // data.success && dispatch({ type: SIGN_IN, data: data })
         dispatch({ type: END_LOADING })
-     dispatch({ type: UPDATE_USER_STATE, data: data })
+    //  dispatch({ type: UPDATE_USER_STATE, data: data })
         if(data.ref) {
             localStorage.setItem("ref", data.ref)
         }
@@ -52,9 +52,9 @@ export const usersigninAccess = (oauth_verifier, oauth_token, ref) => async (dis
 
 
    
-     data.success && dispatch({ type: SIGN_IN, data: data }) &&   dispatch({ type: UPDATE_USER_STATE, data: data })
+     data.success && dispatch({ type: SIGN_IN, data: data }) &&  dispatch({ type: UPDATE_USER_STATE, data: data })
         dispatch({ type: END_LOADING })
-        // console.log("data", data.path)
+     
 
 
 

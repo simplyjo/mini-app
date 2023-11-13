@@ -3,6 +3,7 @@ import { bg, farming } from '../../Assets';
 import { useDispatch } from 'react-redux';
 import { userlogout, usersignin, verifyTaskFour, verifyTaskOne, verifyTaskThree, verifyTaskTwo, verifyReferrer, verifyTaskTweet } from '../../actions/auth';
 import { useLocation } from 'react-router-dom';
+import {useSelector} from "react-redux"
 
 function useQuery() {
     return new URLSearchParams(useLocation().search)
@@ -13,7 +14,11 @@ const Farming = ({ user }) => {
     const [step, setStep] = useState(1);
     const [referrer, setReferrer] = useState();
     const [url, setUrl] = useState();
-    const userProfile = JSON.parse(localStorage.getItem('user') || null) 
+    const stateUser = useSelector(state => state?.users?.user)
+    const {Auth} = useSelector(state => state?.auth)
+    const userProfile =  JSON.parse(localStorage.getItem('user'))
+    
+// let userProfile
     const query = useQuery()
     let [referralTotal , setReferralTotal]= useState(0)
 
@@ -22,7 +27,7 @@ const Farming = ({ user }) => {
     // 1550
     // 2050
 
-    console.log("ref", ref)
+    console.log("stateUser", stateUser, Auth, userProfile)
 
     const task_one_id = "1719779462433149213"
     const task_two_id = "1719779462433149213"
@@ -47,12 +52,12 @@ const Farming = ({ user }) => {
 
     useEffect(() => {
 
-        if (user && user !== "undefined") {
+        if (Auth || userProfile !== "undefined") {
             console.log("onload", localStorage.getItem('user') !== "undefined")
             setStep(2);
         }
 
-    }, [])
+    }, [Auth])
 
 
 
@@ -111,7 +116,7 @@ const Farming = ({ user }) => {
     }
     console.log("referrer", referrer)
 
-    console.log("name", userProfile?.name.split('❤️')[1])
+    console.log("name", userProfile?.name?.split('❤️')[1])
 
     useEffect(() => {
         if(userProfile?.referrals?.length > 10){

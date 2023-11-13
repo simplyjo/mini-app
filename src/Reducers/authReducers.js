@@ -12,8 +12,10 @@ const authReducers = (state = { Auth: false, isLoading: false }, action) => {
       const expirationTime = new Date(new Date().getTime() + 60000);
       // Cookies.set('auth', JSON.stringify(action.data.user), { expires: expirationTime });
       localStorage.setItem("userId",action.data.user.twitterId )
-      window.location.reload()
-   
+   console.log("authbeforeload",action.data )
+
+      // window.location.reload()
+   console.log("authafterload",action.data )
       return { ...state, Auth: true };
     case LOG_OUT:
     
