@@ -29,7 +29,7 @@ const Home = () => {
             </p>
 
             <div className="py-4">
-              <a href="./farming" className="block py-3 my-7 px-4 font-jost text-center text-2xl text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline">
+              <a href="/login" className="block py-3 my-7 px-4 font-jost text-center text-2xl text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline">
                 START FARMING
               </a>
             </div>

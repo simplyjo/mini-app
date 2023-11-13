@@ -16,7 +16,8 @@ const Farming = ({ user }) => {
     const [url, setUrl] = useState();
     const stateUser = useSelector(state => state?.users?.user)
     const {Auth} = useSelector(state => state?.auth)
-    const userProfile =  JSON.parse(localStorage.getItem('user'))
+   const [userProfile, setUserProfile] = useState()
+    const profile =  localStorage.getItem('user')
     
 // let userProfile
     const query = useQuery()
@@ -52,12 +53,13 @@ const Farming = ({ user }) => {
 
     useEffect(() => {
 
-        if (Auth || userProfile !== "undefined") {
+        if (Auth) {
             console.log("onload", localStorage.getItem('user') !== "undefined")
             setStep(2);
+            setUserProfile(stateUser)
         }
 
-    }, [Auth])
+    }, [Auth, stateUser])
 
 
 
@@ -129,6 +131,11 @@ const Farming = ({ user }) => {
         }
 
     }, [userProfile])
+
+    useEffect(() => {
+        if(user)
+        setUserProfile(JSON.parse(user))
+    }, [])
 
     console.log("referralTotal", referralTotal)
 

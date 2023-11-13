@@ -10,7 +10,7 @@ const userReducers = (state = {   user:[], rewards:[]}, action) => {
       localStorage.setItem('user',JSON.stringify(action.data.user) )
       // window.location.reload(false)
 
-      // console.log("stateUser1", action.data.user)
+      console.log("stateUser1", action.data.user)
 
       return { ...state, user:action.data.user };
     case UPDATE_REWARD_STATE:
