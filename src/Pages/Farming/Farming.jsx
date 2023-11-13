@@ -593,7 +593,7 @@ const Farming = ({ user }) => {
 
                                                 </a> */}
                                             </p>
-                                            {userProfile?.referrer ? <>
+                                            {userProfile?.referrer !== "null" ? <>
                                                 <p className='underline-offset-1 break-words  py-2 rounded-lg text-orange-400 text-md ' href="https://twitter.com/beast31278/status/1719779462433149213">
                                                     Your Referrer : <a>{userProfile?.referrer}</a>
 
@@ -611,14 +611,14 @@ const Farming = ({ user }) => {
                                                         </label>
                                                     </div>
                                                 </div>}
-                                            {userProfile?.referrer ?
+                                            {(userProfile?.referrer && userProfile?.referrer !== "null")?
 
 
                                                 <button
                                                     className="block py-3 my-7 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline disabled:opacity-25"
-                                                    disabled={userProfile?.referrer}
+                                                    disabled={userProfile?.referrer !== "null"}
                                                 >
-                                                    {userProfile?.referrer && <>Done</>}
+                                                    {userProfile?.referrer !== "null" && <>Done</>}
 
                                                 </button> : <>
                                                     <button

@@ -10,15 +10,15 @@ export const usersignin = (ref) => async (dispatch) => {
 
 
         // data.success && dispatch({ type: SIGN_IN, data: data })
-        dispatch({ type: END_LOADING })
-    //  dispatch({ type: UPDATE_USER_STATE, data: data })
-        if(data.ref) {
-            localStorage.setItem("ref", data.ref)
-        }
+   
+        //  dispatch({ type: UPDATE_USER_STATE, data: data })
+        // if (data.ref) {
+        //     localStorage.setItem("ref", data.ref)
+        // }
         // console.log("data", data.path)
         data.success && window.open(`${data.path}`)
 
-
+        dispatch({ type: END_LOADING })
 
 
     } catch (error) {
@@ -29,11 +29,11 @@ export const usersignin = (ref) => async (dispatch) => {
 export const userlogout = (user, navigate) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING })
-    
+
         dispatch({ type: LOG_OUT })
         dispatch({ type: END_LOADING })
 
-   
+
 
 
     } catch (error) {
@@ -47,14 +47,14 @@ export const usersigninAccess = (oauth_verifier, oauth_token, ref) => async (dis
         dispatch({ type: START_LOADING })
         console.log("tokens", oauth_verifier, oauth_token, ref)
         const { data } = await api.userSignInAccess(oauth_verifier, oauth_token, ref)
-        
+
         console.log("datauser", data)
 
 
-   
-     data.success && dispatch({ type: SIGN_IN, data: data }) &&  dispatch({ type: UPDATE_USER_STATE, data: data })
+
+        data.success && dispatch({ type: SIGN_IN, data: data }) && dispatch({ type: UPDATE_USER_STATE, data: data })
         dispatch({ type: END_LOADING })
-     
+
 
 
 
@@ -75,8 +75,10 @@ export const verifyTaskTweet = (userId, tweetId) => async (dispatch) => {
         console.log("datauser", data)
 
         data.success && dispatch({ type: UPDATE_USER_STATE, data: data })
-        window.location.reload()
+        // window.location.reload()
         console.log(userId)
+        dispatch({ type: END_LOADING })
+
 
     } catch (error) {
 
@@ -92,8 +94,10 @@ export const verifyTaskOne = (userId) => async (dispatch) => {
         console.log("datauser", data)
 
         data.success && dispatch({ type: UPDATE_USER_STATE, data: data })
-        window.location.reload()
+        // window.location.reload()
         console.log(userId)
+        dispatch({ type: END_LOADING })
+
 
     } catch (error) {
 
@@ -109,7 +113,8 @@ export const verifyTaskTwo = (userId, tweetId) => async (dispatch) => {
         console.log("datauser", data)
 
         data.success && dispatch({ type: UPDATE_USER_STATE, data: data })
-        window.location.reload()
+        // window.location.reload()
+        dispatch({ type: END_LOADING })
 
         console.log(userId, tweetId)
 
@@ -127,7 +132,8 @@ export const verifyTaskThree = (userId, tweetId) => async (dispatch) => {
         console.log("datauser", data)
 
         data.success && dispatch({ type: UPDATE_USER_STATE, data: data })
-        window.location.reload()
+        // window.location.reload()
+        dispatch({ type: END_LOADING })
 
         console.log(userId, tweetId)
 
@@ -145,7 +151,8 @@ export const verifyTaskFour = (userId, tweetId) => async (dispatch) => {
         console.log("datauser", data)
 
         data.success && dispatch({ type: UPDATE_USER_STATE, data: data })
-        window.location.reload()
+        // window.location.reload()
+        dispatch({ type: END_LOADING })
 
         console.log(userId, tweetId)
 
@@ -163,7 +170,8 @@ export const verifyReferrer = (userId, referrer) => async (dispatch) => {
         console.log("datauser", data)
 
         data.success && dispatch({ type: UPDATE_USER_STATE, data: data })
-        window.location.reload()
+        // window.location.reload()
+        dispatch({ type: END_LOADING })
 
         console.log(userId, referrer)
 
