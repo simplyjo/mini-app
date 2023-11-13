@@ -13,7 +13,7 @@ const Farming = ({ user }) => {
     const [step, setStep] = useState(1);
     const [referrer, setReferrer] = useState();
     const [url, setUrl] = useState();
-    const userProfile = JSON.parse(localStorage.getItem('user'))
+    const userProfile = JSON.parse(localStorage.getItem('user') || null) 
     const query = useQuery()
     let [referralTotal , setReferralTotal]= useState(0)
 
