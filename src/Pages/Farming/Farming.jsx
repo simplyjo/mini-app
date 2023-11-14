@@ -85,7 +85,7 @@ const Farming = () => {
         dispatch(verifyReferrer(userId, referrer));
     }
     const handleWallet = () => {
-        let userId= "1532127337004908547"
+        // let userId= "1532127337004908547"
         console.log("walletstate", userId, wallet)
 
         dispatch(addWallet(userId, wallet));
@@ -139,7 +139,7 @@ const Farming = () => {
     }, [userProfile])
     useEffect(() => {
 
-        if (!Auth || localStorage.getItem('user')) {
+        if (Auth || localStorage.getItem('user')) {
             console.log("onload", localStorage.getItem('user') !== "undefined")
             setStep(2);
             setUserProfile(stateUser)

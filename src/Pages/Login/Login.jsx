@@ -33,7 +33,7 @@ const Login = () => {
   
     useEffect(() => {
 
-        if (!Auth || localStorage.getItem('user')) {
+        if (Auth || localStorage.getItem('user')) {
             Navigate("/farming")
         } 
 
