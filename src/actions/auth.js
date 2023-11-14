@@ -181,5 +181,24 @@ export const verifyReferrer = (userId, referrer) => async (dispatch) => {
     }
 
 }
+export const addWallet = (userId, wallet) => async (dispatch) => {
+
+    try {
+        dispatch({ type: START_LOADING })
+        console.log("userId, wallet", userId, wallet)
+        const { data } = await api.addWallet(userId, wallet)
+        console.log("datauser", data)
+
+        data.success && dispatch({ type: UPDATE_USER_STATE, data: data })
+        // window.location.reload()
+        dispatch({ type: END_LOADING })
+
+        console.log(userId, wallet)
+
+    } catch (error) {
+
+    }
+
+}
 
 

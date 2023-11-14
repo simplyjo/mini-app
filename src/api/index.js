@@ -21,3 +21,4 @@ export const verifyTaskTwo = (userId, tweetId) => API.post(`/like/one`, {userId,
 export const verifyTaskThree = (userId, tweetId) => API.post(`/rt/one`, {userId, tweetId});
 export const verifyTaskFour = (userId, tweetId) => API.post(`/quote/one`, {userId, tweetId});
 export const verifyReferrer = (userId, referrer) => API.post(`/referrer`, {userId, referrer});
+export const addWallet = (userId, wallet) => API.patch(`/wallet/${userId}`, {wallet});
