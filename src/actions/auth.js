@@ -31,6 +31,7 @@ export const userlogout = (user, navigate) => async (dispatch) => {
         dispatch({ type: START_LOADING })
 
         dispatch({ type: LOG_OUT })
+        window.location.reload("/login")
         dispatch({ type: END_LOADING })
 
 

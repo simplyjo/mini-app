@@ -16,29 +16,12 @@ const Login = () => {
     const [url, setUrl] = useState();
     const stateUser = useSelector(state => state?.users?.user)
     const {Auth} = useSelector(state => state?.auth)
-    let [userProfile, setUserProfile] = useState()
     const Navigate = useNavigate()
-    
-// let userProfile
+ 
     const query = useQuery()
-    let [referralTotal , setReferralTotal]= useState(0)
 
     const ref = query.get("ref")
     localStorage.setItem("ref", ref)
-    // 1550
-    // 2050
-
-    console.log("stateUser", stateUser, Auth, userProfile)
-
-    const task_one_id = "1719779462433149213"
-    const task_two_id = "1719779462433149213"
-    const task_three_id = "1719779462433149213"
-    const task_four_id = "1719779462433149213"
-    const userId = localStorage.getItem("userId")
-
-
-    // const url = "https://twitter.com/beast31278/status/1723834736676651325"
-
 
 
     const dispatch = useDispatch()
@@ -46,74 +29,23 @@ const Login = () => {
     const handleLogin = () => {
         dispatch(usersignin(ref));
     }
-    const handleLogOut = () => {
-        dispatch(userlogout());
-    }
-
-    
-
-
-    const handleTaskTweet = () => {
-        console.log("handleTaskTweet", userId, url?.split("/")[5])
-        dispatch(verifyTaskTweet(userId, url?.split("/")[5]));
-    }
-    const handleTaskOne = () => {
-        console.log("handleLikeVerify", userId, task_one_id)
-        dispatch(verifyTaskOne(userId, task_one_id));
-    }
-
-    const handleTaskTwo = () => {
-        console.log("handleLikeVerify", userId, task_one_id)
-        dispatch(verifyTaskTwo(userId, task_two_id));
-    }
-
-
-    const handleTaskThree = () => {
-        console.log("handleRetweetVerify", userId, task_one_id)
-        dispatch(verifyTaskThree(userId, task_three_id));
-    }
-    const handleTaskFour = () => {
-        console.log("handleQuoteVerify", userId, task_one_id)
-        // dispatch(verifyTaskFour(userId, task_four_id));
-    }
-    const handleReferrer = () => {
-        console.log("handleQuoteVerify", userId, referrer)
-        dispatch(verifyReferrer(userId, referrer));
-    }
-    const handleCopy = () => {
-        // if(navigator.clipboard.write.length > = 1){
-        //     setCopied("true")
-        // }
-        navigator.clipboard.writeText(`https://localhost:3000?ref=${userProfile?.userName}`)
-    }
-
-    const handlePost = () => {
-        const text = `hey`
-
-        window.open(
-            `https://twitter.com/intent/tweet?&text=${text}%0a%0a&hashtags=coin`,
-            "_blank",
-            "noopener"
-        )
-    }
-    const handleRefererChange = (e) => {
-
-        setReferrer(e.target.value)
-
-    }
-    const handleUrlChange = (e) => {
-
-        setUrl(e.target.value)
-
-    }
-
+  
+  
     useEffect(() => {
 
-        if (Auth) {
+        if (Auth || localStorage.getItem('user')) {
             Navigate("/farming")
-        }
+        } 
 
     }, [Auth, stateUser])
+
+    useEffect(() => {
+        if(localStorage.getItem('user')){
+            Navigate("/farming")
+
+        }
+        
+    }, [])
     
 
     return (

@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { Logo } from '../../Assets'
-import { userlogout } from '../../actions/auth'
+import { userlogout, usersignin } from '../../actions/auth'
 import {useDispatch, useSelector} from "react-redux"
+import { useLocation, useNavigate } from 'react-router-dom'
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search)
+}
 
 
 const Navbar = () => {
@@ -11,16 +15,26 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const stateUser = useSelector(state => state?.users?.user)
   const {Auth} = useSelector(state => state?.auth)
+  const Navigate = useNavigate()
  const [userProfile, setUserProfile] = useState()
+ const query = useQuery()
+ let [referralTotal , setReferralTotal]= useState(0)
+
+ const ref = query.get("ref")
   const navigation = [
     { title: "Home", path: "../" },
     { title: "Farming", path: "../farming" },
     { title: "Community", path: "https://twitter.com/solmeme_" },
-    { title: "Get $MEM", path: "../#" },
+    { title: "Get $MEMEZ", path: "../#" },
 ]
 
+const handleLogin = () => {
+    dispatch(usersignin(ref));
+}
 const handleLogOut = ({}) => {
     dispatch(userlogout());
+    Navigate("/login")
+
   }
 
 
@@ -77,7 +91,9 @@ const handleLogOut = ({}) => {
                                Log Out 
                             </a>
                                 :
-                                <a href="#0" className="block py-3 px-4 font-medium text-center text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline">
+                                <a href="#0" className="block py-3 px-4 font-medium text-center text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
+                                onClick={handleLogin}
+                                >
                                     Connect X account 
                                 </a>}
                             </li>
