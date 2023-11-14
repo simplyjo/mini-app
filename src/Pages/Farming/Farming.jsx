@@ -9,7 +9,7 @@ function useQuery() {
     return new URLSearchParams(useLocation().search)
 }
 
-const Farming = ({ user }) => {
+const Farming = () => {
     const [isConnected, setIsConnected] = useState(false);
     const [step, setStep] = useState(1);
     const [referrer, setReferrer] = useState();
@@ -39,7 +39,7 @@ const Farming = ({ user }) => {
 
     // const url = "https://twitter.com/beast31278/status/1723834736676651325"
 
-    console.log("url", url?.split("/")[5])
+    console.log("link", url?.split("/")[5],url?.split("/")[5].split("?")[0] )
 
 
     const dispatch = useDispatch()
@@ -51,21 +51,14 @@ const Farming = ({ user }) => {
         dispatch(userlogout());
     }
 
-    useEffect(() => {
-
-        if (Auth) {
-            console.log("onload", localStorage.getItem('user') !== "undefined")
-            setStep(2);
-            setUserProfile(stateUser)
-        }
-
-    }, [Auth, stateUser])
+  
 
 
 
     const handleTaskTweet = () => {
         console.log("handleTaskTweet", userId, url?.split("/")[5])
-        dispatch(verifyTaskTweet(userId, url?.split("/")[5]));
+       
+        dispatch(verifyTaskTweet(userId, url?.split("/")[5].split("?")[0]));
     }
     const handleTaskOne = () => {
         console.log("handleLikeVerify", userId, task_one_id)
@@ -131,13 +124,28 @@ const Farming = ({ user }) => {
         }
 
     }, [userProfile])
+    useEffect(() => {
+
+        if (Auth ) {
+            console.log("onload", localStorage.getItem('user') !== "undefined")
+            setStep(2);
+            setUserProfile(stateUser)
+        } else {
+
+            setStep(2);
+            setUserProfile(JSON.parse(localStorage.getItem('user')))
+
+        }
+
+    }, [Auth, stateUser])
 
     useEffect(() => {
-        if(user)
-        setUserProfile(JSON.parse(user))
+        if(localStorage.getItem('user'))
+        console.log("local", profile)
+        setUserProfile(JSON.parse(localStorage.getItem('user')))
     }, [])
 
-    console.log("referralTotal", referralTotal)
+    console.log("newUser", userProfile)
 
     return (
         <div className="flex min-h-screen flex-col justify-center items-center px-4 py-16 mx-auto md:px-24 lg:px-8 lg:py-10 bg-no-repeat bg-cover bg-center"
@@ -246,7 +254,7 @@ const Farming = ({ user }) => {
                                     </ul>
                                     <button
                                         className="block py-3 my-7 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
-                                        disabled={user}
+                                        // disabled={user}
                                         onClick={handleLogin}
                                     >
                                         {isConnected ? 'Connected' : 'Connect With X'}

@@ -72,7 +72,7 @@ const handleLogOut = ({}) => {
                         <span className='hidden w-px h-6 bg-gray-300 md:block'></span>
                         <div className='space-y-3 items-center gap-x-6 md:flex md:space-y-0'>
 
-                            <li>{Auth  ? 
+                            <li>{(Auth || JSON.parse(localStorage.getItem('user')))  ? 
                                 <a href="#0" onClick={handleLogOut} className="block py-3 px-4 font-medium text-center text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline">
                                Log Out 
                             </a>
