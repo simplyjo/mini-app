@@ -17,6 +17,7 @@ const Farming = () => {
     const [url, setUrl] = useState();
     const stateUser = useSelector(state => state?.users?.user)
     const { Auth } = useSelector(state => state?.auth)
+    const { isLoading } = useSelector(state => state?.auth)
     const [userProfile, setUserProfile] = useState()
     const profile = localStorage.getItem('user')
     const Navigate = useNavigate()
@@ -31,10 +32,10 @@ const Farming = () => {
 
     console.log("stateUser", stateUser, Auth, userProfile)
 
-    const task_one_id = "1719779462433149213"
-    const task_two_id = "1719779462433149213"
-    const task_three_id = "1719779462433149213"
-    const task_four_id = "1719779462433149213"
+    const task_one_id = "1724838449847394811"
+    const task_two_id = "1724838449847394811"
+    const task_three_id = "1724838449847394811"
+    const task_four_id = "1724838449847394811"
     const userId = localStorage.getItem("userId")
 
 
@@ -98,11 +99,11 @@ const Farming = () => {
     }
 
     const handlePost = () => {
-        const text = `Finally, The $MEMEZ of all meme sensation for %23Solana Airdrop Season is here.%0a%0a@solmeme_ is a Socio-Fi experiment built to reward meme lovers.%0a%0aStart creating your $MEMEZ moment with %23Solmeme now 👇 %0a%0ahttps%3A%2F%2Fsolmeme.com%2Ffarming`
+        const text = `Finally, The $MEMEZ of all meme sensation for %23Solana Airdrop Season is here.%0a%0a@solmeme_ is a Socio-Fi experiment built to reward meme lovers.%0a%0aStart creating your $MEMEZ moment with %23Solmeme now 👇 %0a%0ahttps%3A%2F%2Fsolmeme.xyz%2Ffarming`
         const test = "Gm"
 
         window.open(
-            `https://twitter.com/intent/tweet?&text=${test}`,
+            `https://twitter.com/intent/tweet?&text=${text}`,
             "_blank",
             "noopener"
         )
@@ -423,19 +424,31 @@ const Farming = () => {
 
                                                 </button> :
                                                 <>
-                                                    <div className='flex'>
+                                                    <div className='flex items-center'>
 
-                                                        <button onClick={handlePost} class="block py-3 my-7 px-4 font-jost text-center bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white  border border-blue-500 hover:border-transparent rounded">
+                                                        <button onClick={handlePost} class="block  py-3 my-7 px-4 font-jost text-center bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white  border border-blue-500 hover:border-transparent rounded">
                                                             Post Tweet
                                                         </button>
                                                         &nbsp;
                                                         &nbsp;
                                                         &nbsp;
                                                         <button
-                                                            className="block py-3 my-7 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
+                                                            className="block py-3 my-7 mr-2 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
                                                             onClick={handleTaskTweet}
 
-                                                        >Collect Reward</button>
+                                                        >
+                                                            Collect Reward
+                                                           </button> 
+                                                           
+                                                           {isLoading ?
+                                                            <div role="status">
+                                                            <svg aria-hidden="true" class="inline w-6 h-6  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                            </svg>
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>: <> </>
+                                                        }
                                                     </div>
                                                 </>
 
@@ -457,6 +470,7 @@ const Farming = () => {
                                             <p className="max-w-xs mx-auto mb-2 text-gray-700 font-jost">
                                                 How much do you love solmeme? Add "❤️ solmeme" to your X name to show your love
                                             </p>
+                                            <div className='flex items-center'>
                                             {userProfile?.task_one ?
 
 
@@ -466,12 +480,23 @@ const Farming = () => {
                                                 >
                                                     {userProfile?.task_one && <>Done</>}
 
-                                                </button> : <button
-                                                    className="block py-3 my-7 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
+                                                </button> : <><button
+                                                    className="block py-3 my-7 mr-2 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
                                                     onClick={handleTaskOne}
-                                                >Collect Reward</button>
+                                                >Collect Reward</button> 
+                                                 <>  {isLoading ?
+                                                    <div role="status">
+                                                    <svg aria-hidden="true" class="inline w-6 h-6  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                    </svg>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>: <> </>
+                                                }
+                                                </>
+                                                </>
 
-                                            }
+                                            }</div>
 
                                         </div>
                                         <div className="bg-white text-left px-10 py-10 border rounded lg:px-5 lg:py-50 xl:py-10">
@@ -500,6 +525,8 @@ const Farming = () => {
 
                                                 </a>
                                             </p>
+                                            <div className='flex items-center'>
+
                                             {userProfile?.task_two ?
 
 
@@ -509,13 +536,24 @@ const Farming = () => {
                                                 >
                                                     {userProfile?.task_two && <>Done</>}
 
-                                                </button> : <button
-                                                    className="block py-3 my-7 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
+                                                </button> :<> <button
+                                                    className="block py-3 my-7 mr-2 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
                                                     onClick={handleTaskTwo}
 
                                                 >Collect Reward</button>
+                                                <>  {isLoading ?
+                                                    <div role="status">
+                                                    <svg aria-hidden="true" class="inline w-6 h-6  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                    </svg>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>: <> </>
+                                                }
+                                                </>
+                                                </>
 
-                                            }
+                                            }</div>
 
                                         </div>
                                         <div className="bg-white text-left px-10 py-10 border rounded lg:px-5 lg:py-50 xl:py-10">
@@ -538,6 +576,8 @@ const Farming = () => {
 
                                                 </a>
                                             </p>
+                                            <div className='flex items-center'>
+                                            
                                             {userProfile?.task_three ?
 
 
@@ -547,13 +587,23 @@ const Farming = () => {
                                                 >
                                                     {userProfile?.task_three && <>Done</>}
 
-                                                </button> : <button
-                                                    className="block py-3 my-7 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
+                                                </button> : <><button
+                                                    className="block py-3 my-7 mr-2 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline"
                                                     onClick={handleTaskThree}
 
-                                                >Collect Reward</button>
+                                                >Collect Reward</button>  <>  {isLoading ?
+                                                    <div role="status">
+                                                    <svg aria-hidden="true" class="inline w-6 h-6  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                    </svg>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>: <> </>
+                                                }
+                                                </>
+                                                </>
 
-                                            }
+                                            }</div>
 
                                         </div>
                                         <div className="bg-white text-left px-10 py-10 border rounded lg:px-5 lg:py-50 xl:py-10">
@@ -598,6 +648,8 @@ const Farming = () => {
                                                         </label>
                                                     </div>
                                                 </div>}
+                                            <div className='flex items-center'>
+
                                             {(userProfile?.referrer && userProfile?.referrer !== "null") ?
 
 
@@ -609,15 +661,26 @@ const Farming = () => {
 
                                                 </button> : <>
                                                     <button
-                                                        className="block py-3 my-7 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline disabled:opacity-25"
+                                                        className="block py-3 my-7 mr-2 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline disabled:opacity-25"
                                                         onClick={handleReferrer}
                                                         disabled={!referrer}
 
                                                     >Submit</button>
+                                                      <>  {isLoading ?
+                                                    <div role="status">
+                                                    <svg aria-hidden="true" class="inline w-6 h-6  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                    </svg>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>: <> </>
+                                                }
+                                                </>
+                                                
                                                 </>
 
 
-                                            }
+                                            }</div>
 
 
                                             <p className="max-w-xs mx-auto mb-4 text-gray-700 font-jost">
@@ -660,6 +723,8 @@ const Farming = () => {
                                                     </label>
                                                 </div>
                                             </div>
+                                            <div className='flex items-center'>
+
                                             {(userProfile?.wallet && userProfile?.wallet !== "null") ?
 
 
@@ -671,11 +736,22 @@ const Farming = () => {
 
                                                 </button> : <>
                                                     <button
-                                                        className="block py-3 my-7 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline disabled:opacity-25"
+                                                        className="block py-3 my-7 mr-2 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline disabled:opacity-25"
                                                         onClick={handleWallet}
                                                         disabled={!wallet}
 
                                                     >Submit</button>
+                                                      <>  {isLoading ?
+                                                    <div role="status">
+                                                    <svg aria-hidden="true" class="inline w-6 h-6  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                    </svg>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>: <> </>
+                                                }
+                                                </>
+                                                
                                                 </>
 
 
@@ -684,6 +760,7 @@ const Farming = () => {
 
 
 
+                                        </div>
                                         </div>
 
                                         <div className="bg-white text-left px-10 py-10 border rounded lg:px-5 lg:py-50 xl:py-10 opacity-25">
@@ -706,6 +783,8 @@ const Farming = () => {
 
                                                 </a>
                                             </p>
+                                            <div className='flex items-center'>
+
                                             {userProfile?.task_four ?
 
 
@@ -715,15 +794,27 @@ const Farming = () => {
                                                 >
                                                     {userProfile?.task_four && <>Done</>}
 
-                                                </button> : <button
-                                                    className="block py-3 my-7 px-4 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline disabled:opacity-25"
+                                                </button> :<> <button
+                                                    className="block py-3 my-7 px-4 mr-2 font-jost text-center  text-white bg-gradient-to-b from-amber-500 to-orange-700  active:shadow-none rounded-full shadow md:inline disabled:opacity-25"
                                                     onClick={handleTaskFour}
                                                     disabled
 
                                                 >Collect Reward</button>
+                                                <>  {isLoading ?
+                                                    <div role="status">
+                                                    <svg aria-hidden="true" class="inline w-6 h-6  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                                    </svg>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>: <> </>
+                                                }
+                                                </>
+                                                </>
 
                                             }
 
+                                        </div>
                                         </div>
 
 

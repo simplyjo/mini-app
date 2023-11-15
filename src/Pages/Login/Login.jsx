@@ -149,7 +149,7 @@ const Login = () => {
                                                     />
                                                 </svg>
                                             </div>
-                                            <p class="font-medium text-gray-300">Harvest $MEMES</p>
+                                            <p class="font-medium text-gray-300">Harvest $MEMEZ</p>
                                         </li>
                                     </ul>
                                     <button
